@@ -15,3 +15,5 @@ RUN apt-get update && \
     apt-get clean autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
+
+EXPOSE 3000/tcp

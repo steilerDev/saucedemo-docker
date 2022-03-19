@@ -1,0 +1,16 @@
+version: '2'
+services:
+  sauce-demo:
+    image: steilerdev/sauce:latest
+    container_name: sauce-demo
+    restart: unless-stopped
+    environment:
+        VIRTUAL_HOST: "saucedemo.doe.net"
+        VIRTUAL_PORT: 3000
+        LETSENCRYPT_HOST: "saucedemo.doe.net"
+        LETSENCRYPT_EMAIL: "hostmaster@doe.net"
+        BRANCH: "diff"
+networks:
+  default:
+    external:
+      name: steilerGroup
