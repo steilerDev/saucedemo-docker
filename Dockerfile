@@ -3,6 +3,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Applying fs patch for assets
 ADD rootfs.tar.gz /
+RUN chmod +x /opt/entry.sh
 
 # Install stuff and remove caches
 RUN apt-get update && \
