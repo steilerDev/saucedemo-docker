@@ -70,7 +70,7 @@ jobs:
         if [ -f ./Dockerfile ]; then
           if [ -f rootfs/rootfs.tar.gz ]; then
             echo "Moving rootfs.tar.gz..."
-            mv rootfs/rootfs.tar.gz ./
+            mv rootfs/rootfs.tar.gz .
           fi
           docker build . --file Dockerfile --tag ${{secrets.DOCKER_DEV_HOST}}/$PKG_NAME:latest
         else

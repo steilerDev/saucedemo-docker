@@ -18,3 +18,5 @@ RUN apt-get update && \
     rm -rf /var/lib/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
 
 EXPOSE 3000/tcp
+
+ENTRYPOINT ["/opt/entry.sh"]
