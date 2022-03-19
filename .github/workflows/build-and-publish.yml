@@ -35,7 +35,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: Create diff
       run: |
-        tree rootfs/opt/diff/
+        tree .
         rsync -av --ignore-existing rootfs/opt/orig/ rootfs/opt/diff/
         diff -qr rootfs/opt/orig/ rootfs/opt/diff/ && exit 1
     - name: Install npm dependencies
