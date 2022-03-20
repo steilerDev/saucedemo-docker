@@ -15,5 +15,5 @@ For a helper script to quickly switch between the two versions and required asse
 
 The helper scripts can be easily installed by running the following command in the subdirectory, where you want your script to be stored (the setup expects [`nginx-proxy`](https://github.com/nginx-proxy/nginx-proxy) and [`acme-companion`](https://github.com/nginx-proxy/acme-companion)):
 ```
-bash -s < <(curl -L https://raw.githubusercontent.com/steilerDev/saucedemo-docker/main/install.sh)
+bash -s < <(curl -s https://raw.githubusercontent.com/steilerDev/saucedemo-docker/main/install.sh)
 ```
