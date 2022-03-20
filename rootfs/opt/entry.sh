@@ -12,7 +12,9 @@ MOD_BRANCH_NAME="diff"
 BUILD_VANILLA="/opt/vanilla"
 BUILD_MOD="/opt/mod"
 
-echo "Starting Sauce Demo on port ${PORT:=3000}, using branch ${BRANCH:=$VANILLA_BRANCH_NAME}"
+DEFAULT_PORT=3000
+
+echo "Starting Sauce Demo on port ${PORT:=$DEFAULT_PORT}, using branch ${BRANCH:=$VANILLA_BRANCH_NAME}"
 echo $PORT
 echo $BRANCH
 

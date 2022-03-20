@@ -4,12 +4,11 @@ services:
     image: steilerdev/sauce:latest
     container_name: sauce-demo
     on-failure: 5
+    env_file:
+      - ./config.env
     environment:
-        VIRTUAL_HOST: "saucedemo.doe.net"
-        VIRTUAL_PORT: 3000
-        LETSENCRYPT_HOST: "saucedemo.doe.net"
-        LETSENCRYPT_EMAIL: "hostmaster@doe.net"
-        BRANCH: "diff"
+      VIRTUAL_PORT: 3000
+      BRANCH: "diff"
 networks:
   default:
     external:
