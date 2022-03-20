@@ -40,12 +40,16 @@ jobs:
         npm install --prefix $SOURCE_DIR/
         npm run build --prefix $SOURCE_DIR/
         mv $SOURCE_DIR/build rootfs/opt/orig
+      env:
+        CI: false
     - name: Create diff & build diff version
       run: |
         rsync -avI diff/ orig/
         npm run build --prefix $SOURCE_DIR/
         mv $SOURCE_DIR/build rootfs/opt/diff
         diff -qr rootfs/opt/diff rootfs/opt/orig
+      env:
+        CI: false
     - name: Package docker artifacts
       run: |
         if [ -d ./rootfs ]; then
