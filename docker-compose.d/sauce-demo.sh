@@ -23,15 +23,17 @@ echo " done"
 if [ "$1" = "pull" ]; then
     echo "Updating container image..."
     docker-compose -f $DEFAULT_YML pull
-else
-    if [ "$1" = "$DEFAULT_CMD" ] || [ -z $1 ]; then
+elif [ "$1" = "stop" ]; then
+    exit 0 #already done
+elif [ "$1" = "up" ]; then
+    if [ "$2" = "$DEFAULT_CMD" ] || [ -z $2 ]; then
         echo "Bringing default site up ..."
         docker-compose -f $DEFAULT_YML up -d > /dev/null
-    elif [ "$1" = "$DIFF_CMD" ]; then
+    elif [ "$2" = "$DIFF_CMD" ]; then
         echo "Bringing diff site up ..."
         docker-compose -f $DIFF_YML up -d > /dev/null
     else
-        echo "Unknown argument specified ($1), either '$DEFAULT_CMD' or '$DIFF_CMD'"
+        echo "Unknown argument specified ($2), either '$DEFAULT_CMD' or '$DIFF_CMD'"
         exit 1
     fi
 
@@ -42,4 +44,14 @@ else
     done
     echo " done"
     echo "Site up & running @ $HOST"
+else
+    echo "Sauce Demo helper script."
+    echo
+    echo "Usage: $0 <command>"
+    echo "  Possible commands:"
+    echo "   - 'pull': Pulls the latest image from DockerHub"
+    echo "   - 'stop': Stops the current deployment"
+    echo "   - 'up <branch>': Starts the deployment using the specified <branch>. Either 'default' (or empty) for unmodified version, or 'diff' for changed login page."
+    echo
+    echo "Build by steilerDev - https://github.com/steilerDev/saucedemo-docker"
 fi

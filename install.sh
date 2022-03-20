@@ -6,7 +6,7 @@ GH_BASE_URL="https://raw.githubusercontent.com/steilerDev/saucedemo-docker/main/
 
 ENV_CONFIG_FILE="config.env"
 
-remote_files=("default.yml" "deploy.sh" "diff.yml")
+remote_files=("default.yml" "sauce-demo.sh" "diff.yml")
 for file in "${remote_files[@]}"; do
     echo "Getting $file..."
     if [ -f $file ]; then
