@@ -10,7 +10,7 @@ if [ "$1" = "pull" ]; then
     echo "Updating container image..."
     docker-compose -f $DEFAULT_YML pull
     echo " done"
-elif [ "$1" = "stop" ]; then
+elif [ "$1" = "down" ]; then
     echo -n "Stopping current deployment ..."
     docker-compose -f $DEFAULT_YML down -t 0 > /dev/null 2>&1
     echo " done"
@@ -47,13 +47,15 @@ elif [ "$1" = "up" ]; then
     echo " done"
 
     echo "Site up & running @ $HOST"
+    echo 
+    echo "On Safari: Use '<cmd> <opt> e' to clear cache"
 else
     echo "Sauce Demo helper script."
     echo
     echo "Usage: $0 <command>"
     echo "  Possible commands:"
     echo "   - 'pull': Pulls the latest image from DockerHub"
-    echo "   - 'stop': Stops the current deployment"
+    echo "   - 'down': Stops the current deployment"
     echo "   - 'up <branch>': Starts the deployment using the specified <branch>. Either 'default' (or empty) for unmodified version, or 'diff' for changed login page."
     echo
     echo "Build by steilerDev - https://github.com/steilerDev/saucedemo-docker"

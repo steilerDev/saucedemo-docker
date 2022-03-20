@@ -7,7 +7,7 @@ GH_BASE_URL="https://raw.githubusercontent.com/steilerDev/saucedemo-docker/main/
 ENV_CONFIG_FILE="config.env"
 BIN=""
 
-remote_files=("default.yml" "sauce-demo.sh" "diff.yml")
+remote_files=("default.yml" "diff.yml" "sauce-demo.sh")
 for file in "${remote_files[@]}"; do
     echo "Getting $file..."
     if [ -f $file ]; then
@@ -27,7 +27,7 @@ if [ -f $ENV_CONFIG_FILE ]; then
 else
     echo "Environment not congigured, performing now..."
     read -p "Enter domain name (VIRTUAL_HOST, LETSENCRYPT_HOST): " DEMO_DOMAIN </dev/tty
-    read -p "Enter email (LETSENCRYPT_EMAIL)" DEMO_EMAIL </dev/tty
+    read -p "Enter email (LETSENCRYPT_EMAIL): " DEMO_EMAIL </dev/tty
 
     echo "VIRTUAL_HOST=\"$DEMO_DOMAIN\"" >> $ENV_CONFIG_FILE
     echo "LETSENCRYPT_HOST=\"$DEMO_DOMAIN\"" >> $ENV_CONFIG_FILE
@@ -36,4 +36,4 @@ fi
 
 echo
 echo "You are good to go!"
-$BIN
+./$BIN
