@@ -13,28 +13,7 @@ The following environmental variables can be used for configuration:
 # docker-compose example
 For a helper script to quickly switch between the two versions and required assets, see [`docker-compose.d`](https://github.com/steilerDev/saucedemo-docker/tree/main/docker-compose.d/).
 
-The helper scripts can be easily installed by running the following command in the subdirectory, where you want your script to be stored:
+The helper scripts can be easily installed by running the following command in the subdirectory, where you want your script to be stored (the setup expects [`nginx-proxy`](https://github.com/nginx-proxy/nginx-proxy) and [`acme-companion`](https://github.com/nginx-proxy/acme-companion)):
 ```
-curl -L https://raw.githubusercontent.com/steilerDev/saucedemo-docker/main/install.sh | bash
-```
-
-Usage with `nginx-proxy` inside of predefined `steilerGroup` network for the default version:
-
-```
-version: '2'
-services:
-  sauce-demo:
-    image: steilerdev/sauce:latest
-    container_name: sauce-demo
-    on-failure: 5
-    environment:
-        VIRTUAL_HOST: "saucedemo.doe.net"
-        VIRTUAL_PORT: 3000
-        LETSENCRYPT_HOST: "saucedemo.doe.net"
-        LETSENCRYPT_EMAIL: "hostmaster@doe.net"
-        BRANCH: "default"
-networks:
-  default:
-    external:
-      name: steilerGroup
+bash -s < <(curl -L https://raw.githubusercontent.com/steilerDev/saucedemo-docker/main/install.sh)
 ```

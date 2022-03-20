@@ -8,6 +8,7 @@ ENV_CONFIG_FILE="config.env"
 
 remote_files=("default.yml" "deploy.sh" "diff.yml")
 for file in "${array[@]}"; do
+    echo "Getting $file..."
     if [ -f $file ]; then
         echo "$file already exists locally, deleting..."
         rm $file
