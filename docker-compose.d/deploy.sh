@@ -1,10 +1,20 @@
 #!/bin/bash
 
-HOST="https://saucedemo.steilergroup.net"
 DEFAULT_YML="./default.yml"
 DEFAULT_CMD="default"
 DIFF_YML="./diff.yml"
 DIFF_CMD="diff"
+
+ENV_CONFIG_FILE="config.env"
+if [ -f $ENV_CONFIG_FILE ]; then
+    echo "Loading configuration..."
+    export $(cat $ENV_CONFIG_FILE | xargs)
+else
+    echo "$ENV_CONFIG_FILE not found!"
+    exit 1
+fi
+
+HOST="https://${LETSENCRYPT_HOST}"
 
 echo -n "Stopping current deployment ..."
 docker-compose -f $DEFAULT_YML down -t 0 > /dev/null 2>&1
@@ -25,7 +35,7 @@ else
         exit 1
     fi
 
-    echo -n "Waiting for site to deploy ..."
+    echo -n "Waiting for site ($HOST) to deploy ..."
     while ! curl -s --head  --request GET $HOST | grep "HTTP/2 200" > /dev/null; do
         echo -n "."
         sleep 1
