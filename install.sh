@@ -34,6 +34,10 @@ else
     echo "LETSENCRYPT_EMAIL=\"$DEMO_EMAIL\"" >> $ENV_CONFIG_FILE
 fi
 
+echo "Getting latest docker image..."
+./$BIN pull
+
 echo
 echo "You are good to go!"
+echo
 ./$BIN
