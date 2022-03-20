@@ -52,7 +52,8 @@ jobs:
       env:
         CI: false
     - name: Diffing builds
-      run: \! diff -qr $BUILD_MOD $BUILD_VANILLA 
+      run: |
+        ! diff -qr $BUILD_MOD $BUILD_VANILLA 
     - name: Package docker artifacts
       run: |
         if [ -d ./rootfs ]; then
