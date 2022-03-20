@@ -36,6 +36,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: Install npm dependencies & build orig version
       run: |
+        tree .
         npm install --prefix $SOURCE_DIR/
         npm run build --prefix $SOURCE_DIR/
         mv $SOURCE_DIR/build rootfs/opt/orig
