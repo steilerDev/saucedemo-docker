@@ -52,6 +52,7 @@ jobs:
       env:
         CI: false
     - name: Diffing builds
+      run: |
         diff -qr $BUILD_MOD $BUILD_VANILLA
         if [ $? -eq 0 ]; then
           exit 1
