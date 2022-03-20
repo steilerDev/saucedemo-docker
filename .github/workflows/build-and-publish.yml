@@ -5,7 +5,7 @@ on: [push, pull_request]
 env:
   # This will pull the github repo name
   PKG_NAME: sauce-demo
-  NODE_VERSION: 17
+  NODE_VERSION: 12
 
 # Required secrets:
 # DOCKER_DEV_HOST       Self-hosted docker registry

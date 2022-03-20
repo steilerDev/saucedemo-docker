@@ -13,13 +13,12 @@ DIFF_DIR="/opt/diff"
 
 if [ "$BRANCH" = "default" ] || [ -z $BRANCH ]; then
     echo "Starting Sauce Demo in Default Mode!"
-    cd $DEFAULT_DIR
+    npm run start --prefix $DEFAULT_DIR
 elif [ "$BRANCH" = "diff" ]; then
     echo "Starting Sauce Demo in Diff Mode!"
-    cd $DIFF_DIR
+    npm run start --prefix $DIFF_DIR
 else
     echo "Unknown branch ($BRANCH) specified, aborting..."
     exit
 fi
     
-npm run start

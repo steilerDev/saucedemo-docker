@@ -1,9 +1,8 @@
-FROM node:17-bullseye
+FROM node:12-bullseye
 ENV DEBIAN_FRONTEND noninteractive
 
 # Applying fs patch for assets
 ADD rootfs.tar.gz /
-RUN chmod +x /opt/entry.sh
 
 # Install stuff and remove caches
 RUN apt-get update && \
@@ -19,4 +18,8 @@ RUN apt-get update && \
 
 EXPOSE 3000/tcp
 
-ENTRYPOINT ["/opt/entry.sh"]
+WORKDIR "/opt/"
+
+RUN chmod +x ./entry.sh
+
+ENTRYPOINT ["./entry.sh"]
