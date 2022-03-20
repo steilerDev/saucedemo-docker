@@ -44,7 +44,7 @@ jobs:
         CI: false
     - name: Create diff & build diff version
       run: |
-        rsync -avI diff/ orig/
+        cp -r diff/* orig/
         npm run build --prefix $SOURCE_DIR/
         mv $SOURCE_DIR/build rootfs/opt/diff
         diff -qr rootfs/opt/diff rootfs/opt/orig
