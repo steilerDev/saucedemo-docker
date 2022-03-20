@@ -3,7 +3,7 @@ services:
   sauce-demo:
     image: steilerdev/sauce:latest
     container_name: sauce-demo
-    restart: unless-stopped
+    on-failure: 5
     environment:
         VIRTUAL_HOST: "saucedemo.doe.net"
         VIRTUAL_PORT: 3000

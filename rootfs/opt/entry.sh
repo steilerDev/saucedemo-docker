@@ -7,16 +7,16 @@ handle-stop () {
 
 echo "Starting Sauce Demo!"
 
-DEFAULT_DIR="/opt/orig"
-DIFF_DIR="/opt/diff"
+BUILD_VANILLA="/opt/vanilla"
+BUILD_MOD="/opt/mod"
 
 
 if [ "$BRANCH" = "default" ] || [ -z $BRANCH ]; then
     echo "Starting Sauce Demo in Default Mode!"
-    npm run start --prefix $DEFAULT_DIR
+    serve -n -u -d --no-etag $BUILD_VANILLA
 elif [ "$BRANCH" = "diff" ]; then
     echo "Starting Sauce Demo in Diff Mode!"
-    npm run start --prefix $DIFF_DIR
+    serve -n -u -d --no-etag $BUILD_MOD
 else
     echo "Unknown branch ($BRANCH) specified, aborting..."
     exit
