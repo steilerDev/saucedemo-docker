@@ -7,6 +7,9 @@ env:
   PKG_NAME: sauce-demo
   NODE_VERSION: 12
   SOURCE_DIR: source
+  DIFF_DIR: diff
+  BUILD_VANILLA: rootfs/opt/vanilla
+  BUILD_MOD: rootfs/opt/mod
 
 # Required secrets:
 # DOCKER_DEV_HOST       Self-hosted docker registry
@@ -36,23 +39,23 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: Install npm dependencies & build orig version
       run: |
-        tree .
         npm install --prefix $SOURCE_DIR/
         npm run build --prefix $SOURCE_DIR/
-        mv $SOURCE_DIR/build rootfs/opt/orig
+        mv $SOURCE_DIR/build $BUILD_VANILLA
       env:
         CI: false
     - name: Create diff & build diff version
       run: |
-        tree .
-        diff -qr diff/ orig/
-        cp -r diff/* orig/
-        tree .
+        cp -r $DIFF_DIR/* $SOURCE_DIR/
         npm run build --prefix $SOURCE_DIR/
-        mv $SOURCE_DIR/build rootfs/opt/diff
-        diff -qr rootfs/opt/diff rootfs/opt/orig
+        mv $SOURCE_DIR/build $BUILD_MOD
       env:
         CI: false
+    - name: Diffing builds
+        diff -qr $BUILD_MOD $BUILD_VANILLA
+        if [ $? -eq 0 ]; then
+          exit 1
+        fi
     - name: Package docker artifacts
       run: |
         if [ -d ./rootfs ]; then
