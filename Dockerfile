@@ -16,6 +16,9 @@ RUN apt-get update && \
     apt-get autoremove && \
     rm -rf /var/lib/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
 
+# Serving the statically generated files
+RUN npm install -g serve
+
 EXPOSE 3000/tcp
 
 WORKDIR "/opt/"

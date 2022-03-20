@@ -6,6 +6,7 @@ env:
   # This will pull the github repo name
   PKG_NAME: sauce-demo
   NODE_VERSION: 12
+  SOURCE_DIR: source
 
 # Required secrets:
 # DOCKER_DEV_HOST       Self-hosted docker registry
@@ -28,15 +29,22 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: saucelabs/sample-app-web
-        path: rootfs/opt/orig
+        path: $SOURCE_DIR
     - name: Setup node
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.NODE_VERSION }}
-    - name: Install npm dependencies
-      run: npm install --prefix rootfs/opt/orig/
-    - name: Create diff
-      run: rsync -av --ignore-existing rootfs/opt/orig/ rootfs/opt/diff/
+    - name: Install npm dependencies & build orig version
+      run: |
+        npm install --prefix $SOURCE_DIR/
+        npm run build --prefix $SOURCE_DIR/
+        mv $SOURCE_DIR/build rootfs/opt/orig
+    - name: Create diff & build diff version
+      run: |
+        rsync -avI diff/ orig/
+        npm run build --prefix $SOURCE_DIR/
+        mv $SOURCE_DIR/build rootfs/opt/diff
+        diff -qr rootfs/opt/diff rootfs/opt/orig
     - name: Package docker artifacts
       run: |
         if [ -d ./rootfs ]; then
