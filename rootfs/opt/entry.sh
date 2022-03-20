@@ -15,8 +15,6 @@ BUILD_MOD="/opt/mod"
 DEFAULT_PORT=3000
 
 echo "Starting Sauce Demo on port ${PORT:=$DEFAULT_PORT}, using branch ${BRANCH:=$VANILLA_BRANCH_NAME}"
-echo $PORT
-echo $BRANCH
 
 if [ "$BRANCH" = "$VANILLA_BRANCH_NAME" ]; then
     echo "Starting Sauce Demo in Default Mode!"

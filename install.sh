@@ -27,9 +27,9 @@ else
     read -p "Enter domain name (VIRTUAL_HOST, LETSENCRYPT_HOST):" DEMO_DOMAIN </dev/tty
     read -p "Enter email (LETSENCRYPT_EMAIL)" DEMO_EMAIL </dev/tty
 
-    echo "VIRTUAL_HOST: \"$DEMO_DOMAIN\"" >> $ENV_CONFIG_FILE
-    echo "LETSENCRYPT_HOST: \"$DEMO_DOMAIN\"" >> $ENV_CONFIG_FILE
-    echo "LETSENCRYPT_EMAIL: \"$DEMO_EMAIL\"" >> $ENV_CONFIG_FILE
+    echo "VIRTUAL_HOST=\"$DEMO_DOMAIN\"" >> $ENV_CONFIG_FILE
+    echo "LETSENCRYPT_HOST=\"$DEMO_DOMAIN\"" >> $ENV_CONFIG_FILE
+    echo "LETSENCRYPT_EMAIL=\"$DEMO_EMAIL\"" >> $ENV_CONFIG_FILE
 fi
 
 echo

@@ -1,7 +1,7 @@
 version: '2'
 services:
   sauce-demo:
-    image: steilerdev/sauce:latest
+    image: steilerdev/sauce-demo:latest
     container_name: sauce-demo
     restart: on-failure:5
     env_file:
