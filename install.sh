@@ -13,8 +13,8 @@ for file in "${remote_files[@]}"; do
         echo "$file already exists locally, deleting..."
         rm $file
     fi
-    wget -O $file "$GH_BASE_URL/$file"
-    if [[ $file == .sh ]]; then
+    wget -qO $file "$GH_BASE_URL/$file"
+    if [[ $file == *.sh ]]; then
         echo "Making shell script executable..."
         chmod +x $file
     fi
