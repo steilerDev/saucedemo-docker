@@ -23,11 +23,8 @@ if [ -f $ENV_CONFIG_FILE ]; then
     echo "Environment already configured, skipping..."
 else
     echo "Environment not congigured, performing now..."
-    echo "Enter domain name (VIRTUAL_HOST, LETSENCRYPT_HOST):"
-    read DEMO_DOMAIN
-
-    echo "Enter email (LETSENCRYPT_EMAIL)"
-    read DEMO_EMAIL
+    read -p "Enter domain name (VIRTUAL_HOST, LETSENCRYPT_HOST):" DEMO_DOMAIN
+    read -p "Enter email (LETSENCRYPT_EMAIL)" DEMO_EMAIL
 
     echo "VIRTUAL_HOST: \"$DEMO_DOMAIN\"" >> $ENV_CONFIG_FILE
     echo "LETSENCRYPT_HOST: \"$DEMO_DOMAIN\"" >> $ENV_CONFIG_FILE
