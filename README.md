@@ -13,7 +13,7 @@ The following environmental variables can be used for configuration:
 # docker-compose example
 For a helper script to quickly switch between the two versions and required assets, see [`docker-compose.d`](https://github.com/steilerDev/saucedemo-docker/tree/main/docker-compose.d/).
 
-The helper scripts can be easily installed by running the following command in the subdirectory, where you want your script to be stored (the setup expects [`nginx-proxy`](https://github.com/nginx-proxy/nginx-proxy) and [`acme-companion`](https://github.com/nginx-proxy/acme-companion)):
+The helper scripts can be easily installed by running the following command in the subdirectory, where you want your script to be stored (the setup expects a working docker + docker-compose setup and a running [`nginx-proxy`](https://github.com/nginx-proxy/nginx-proxy) and [`acme-companion`](https://github.com/nginx-proxy/acme-companion) container within the externally `steilerGroup` network):
 ```
 bash -s < <(curl -s https://raw.githubusercontent.com/steilerDev/saucedemo-docker/main/install.sh)
 ```
