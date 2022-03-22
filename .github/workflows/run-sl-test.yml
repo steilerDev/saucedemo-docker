@@ -21,21 +21,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        repository: saucelabs/sample-app-web
+        repository: saucelabs-training/demo-js
     - name: Setup node
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.NODE_VERSION }}
     - name: Setup test for environment
       run: |
-        sed -i 's/http:\/\/localhost:3000/https:\/\/${{ env.APP_URL }}/' test/e2e/configs/wdio.shared.conf.js
-        sed -i 's/sauceConnect: true/sauceConnect: false/' test/e2e/configs/wdio.saucelabs.conf.js
-    - name: Install dependencies
-      run: npm install
-   # - name: Start service locally
-   #   run: npm run start &
+        sed -i 's/saucedemo.com/${{ env.APP_URL }}/' test/configs/wdio.shared.conf.ts
+        npm install
+      working-directory: webdriverio/webdriver/best-practices/
     - name: Run Tests
-      run: npm run test.e2e.sauce.eu
+      run: npm run test.saucelabs.eu
+      working-directory: webdriverio/webdriver/best-practices/
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
