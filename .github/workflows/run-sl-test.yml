@@ -28,7 +28,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: Setup test for environment
       run: |
-        sed -i 's/saucedemo.com/${{ env.APP_URL }}/' test/configs/wdio.shared.conf.ts
+        sed -i 's/www.saucedemo.com/${{ env.APP_URL }}/' test/configs/wdio.shared.conf.ts
         npm install
       working-directory: webdriverio/webdriver/best-practices/
     - name: Run Tests
