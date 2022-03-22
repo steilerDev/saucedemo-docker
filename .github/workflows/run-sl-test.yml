@@ -11,7 +11,7 @@ on:
 
 env:
   NODE_VERSION: 12
-  APP_URL: 'saucedemo.steilergroup.net'
+  APP_URL: 'saucedemo.com'
 
 jobs:
   test:
