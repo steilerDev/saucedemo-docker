@@ -11,6 +11,7 @@ on:
 
 env:
   NODE_VERSION: 12
+  APP_URL: 'saucedemo.steilergroup.net'
 
 jobs:
   test:
@@ -27,8 +28,8 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: Setup test for environment
       run: |
-        sed -i 's/http:\/\/localhost:3000/https:\/\/saucedemo.steilergroup.net/' test/e2e/configs/wdio.shared.conf.js
-        cat test/e2e/configs/wdio.shared.conf.js
+        sed -i 's/http:\/\/localhost:3000/https:\/\/${APP_URL}/' test/e2e/configs/wdio.shared.conf.js
+        sed -i 's/silent/info/' test/e2e/configs/wdio.shared.conf.js
     - name: Install dependencies
       run: npm install
     - name: Run Tests
