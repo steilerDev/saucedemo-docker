@@ -11,7 +11,7 @@ on:
 
 env:
   NODE_VERSION: 12
-  APP_URL: 'saucedemo.steilergroup.net'
+  APP_URL: 'localhost:3000'
 
 jobs:
   test:
@@ -30,6 +30,8 @@ jobs:
       run: sed -i 's/http:\/\/localhost:3000/https:\/\/${{ env.APP_URL }}/' test/e2e/configs/wdio.shared.conf.js
     - name: Install dependencies
       run: npm install
+    - name: Start service locally
+      run: npm run start &
     - name: Run Tests
       run: npm run test.e2e.sauce.eu
       env: # Or as an environment variable
