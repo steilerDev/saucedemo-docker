@@ -11,5 +11,5 @@ services:
       BRANCH: "diff"
 networks:
   default:
-    external:
-      name: steilerGroup
+    name: steilerGroup
+    external: true

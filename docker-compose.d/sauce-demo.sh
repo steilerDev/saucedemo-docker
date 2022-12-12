@@ -8,11 +8,11 @@ ENV_CONFIG_FILE="config.env"
 
 if [ "$1" = "pull" ]; then
     echo "Updating container image..."
-    docker-compose -f $DEFAULT_YML pull
+    docker compose -f $DEFAULT_YML pull
     echo " done"
 elif [ "$1" = "down" ]; then
     echo -n "Stopping current deployment ..."
-    docker-compose -f $DEFAULT_YML down -t 0 > /dev/null 2>&1
+    docker compose -f $DEFAULT_YML down -t 0 > /dev/null 2>&1
     echo " done"
 elif [ "$1" = "up" ]; then
     if [ -f $ENV_CONFIG_FILE ]; then
@@ -28,10 +28,10 @@ elif [ "$1" = "up" ]; then
 
     if [ "$2" = "$DEFAULT_CMD" ] || [ -z $2 ]; then
         echo "Bringing default site up ..."
-        docker-compose -f $DEFAULT_YML up -d > /dev/null
+        docker compose -f $DEFAULT_YML up -d > /dev/null
     elif [ "$2" = "$DIFF_CMD" ]; then
         echo "Bringing diff site up ..."
-        docker-compose -f $DIFF_YML up -d > /dev/null
+        docker compose -f $DIFF_YML up -d > /dev/null
     else
         echo "Unknown argument specified ($2), either '$DEFAULT_CMD' or '$DIFF_CMD'"
         exit 1

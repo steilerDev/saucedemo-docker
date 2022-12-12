@@ -11,5 +11,5 @@ services:
       BRANCH: "default"
 networks:
   default:
-    external:
-      name: steilerGroup
+    name: steilerGroup
+    external: true
