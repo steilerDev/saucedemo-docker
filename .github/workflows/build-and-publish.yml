@@ -28,7 +28,7 @@ jobs:
         repository: saucelabs/sample-app-web
         path: ${{ env.SOURCE_DIR }}
     - name: Setup node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ env.NODE_VERSION }}
     - name: Install npm dependencies & build orig version
@@ -60,7 +60,7 @@ jobs:
           done
         fi
     - name: Upload docker artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: rootfs
         path: ./**/rootfs.tar.gz
