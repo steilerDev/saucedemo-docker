@@ -1,4 +1,4 @@
-FROM node:12-bullseye
+FROM node:16-bullseye
 ENV DEBIAN_FRONTEND noninteractive
 
 # Applying fs patch for assets
